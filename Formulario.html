@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacion de formulario con js</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+     </head>
+<body>
+    <main>
+            <form  onsubmit="return validadorform()"  action="" class="formulario" id="formulario">
+                
+                <!-------------------------------INFORMACION DEL CLIENTE Y VEHICULO---------------------------------------------------->
+                    
+                <h1 class="encabezados__formulario">TIPO DE CLIENTE E INFORMACION DE TALLER/BODEGA</h1>
+                
+
+                        <!--GRUPO BOTON DE MODIFICAR COTIZACION-->
+                    <div class="formulario__grupo formulario__grupo-btn-modificar">
+                        <button type="reset" class="formulario__grupo-btn3">Modificar cotizacion</button>
+                    </div>
+
+                    <!--GRUPO BOTON DE CONVERTIR EN ORDEN-->
+                    <div class="formulario__grupo formulario__grupo-btn-convertir">
+                        <button type="submit" class="formulario__grupo-btn4">Convertir en orden</button>
+                    </div>
+
+                        <!--GRUPO NUMERO DE ORDEN PARA REALIZAR-->
+                        <div class="formulario__grupo" id="grupo__numorder">
+                            <label for="numorder" class="formulario__label">Numero de orden:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="numorder" id="numorder" placeholder="455-699">
+                                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <p class="formulario__input-error">Los datos asignados a la casilla no son correctos, revise de nuevo.</p>
+                        </div>
+
+                        <!--GRUPO TIPO DE CLIENTE-->
+                        <div class="formulario__lista" id="lista__tipecliente">
+                            <label for="tipecliente" class="formulario__label">Tipo de cliente</label>
+                            <select class="formulario__select" neme="tipecliente" id="tipecliente">
+                                <option value="">seleccione un tipo de cliente</option>
+                                <option value="">Nuevo</option>
+                                <option value="">Antiguo</option>
+                            </select>
+                        </div>
+
+                        <!--GRUPO TALLER A SELECCIONAR-->
+                        <div class="formulario__lista" id="lista__taller">
+                            <label for="taller" class="formulario__label">Taller:</label>
+                            <select class="formulario__select" neme="taller" id="taller">
+                                <option value="">seleccione un taller</option>
+                                <option value="04">04 Bodega Taller,cen=1051</option>
+                                <option value="07">07 Bodega Taller, cen=8001</option>
+                                <option value="11">11 Concesionario, cen=6011</option>
+                                <option value="23">23 Concesionario, cen=6780</option>
+                            </select>
+                        </div>
+
+                        <!--GRUPO NOMBRE DEL CLIENTE-->
+                        <div class="formulario__grupo" id="grupo__cliente">
+                            <label for="cliente" class="formulario__label">Nombre del Cliente:</label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="formulario__input" name="cliente" id="cliente" placeholder="Samuel Garces">
+                                <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <p class="formulario__input-error">Por favor verifique que el nombre se encuentre correcto.</p>
+                        </div>
+
+                    
+                                       
+                    <!-------------------------------INFORMACION DE CREAR CLIENTE---------------------------------------------------->
+                    <h1 class="encabezados__formulario">CREAR CLIENTE</h1>
+
+                                    <!--GRUPO RAZON-->
+                            <div class="nota__grupo" id="grupo__razon">
+                                <label for="razon" class="nota__label">Razon:</label>
+                                <div class="nota__grupo-input">
+                                    <textarea class="nota__input" name="razon" id="razon" placeholder="Si es necesario agrega algo"></textarea>
+                                    <i class="nota__validacion-estado fa-solid fa-circle-xmark"></i>
+                                </div>
+                                <p class="nota__input-error" id="nota__input-error">Parece que excedió el número de caracteres permitidos.</p>
+                            </div>
+
+                            <!--GRUPO CPAG-->
+                            <div class="formulario__lista" id="lista__cpag">
+                                <label for="cpag" class="formulario__label">C.Pag</label>
+                                <select class="formulario__select" neme="cpag" id="cpag">
+                                    <option value="">seleccione un taller</option>
+                                    <option value="">Opcion 1</option>
+                                    <option value="">Opcion 2</option>
+                                    <option value="">Opcion 3</option>
+                                    <option value="">Opcion 4</option>
+                                </select>
+                            </div>
+
+                            <!--GRUPO DIRECCION DE ENVIO-->
+                            <div class="formulario__grupo" id="grupo__direccion">
+                                <label for="direccion" class="formulario__label">Dirección:</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="direccion" id="direccion" placeholder="Calle 82 #70 A 23">
+                                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                                </div>
+                                <p class="formulario__input-error">Los datos asignados a la casilla no son correctos, revise de nuevo.</p>
+                            </div>
+
+                            <!--GRUPO NIT-->
+                            <div class="formulario__grupo" id="grupo__nit">
+                                <label for="nit" class="formulario__label">Nit:</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="text" class="formulario__input" name="nit" id="nit" placeholder="2563985262-1">
+                                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                                </div>
+                                <p class="formulario__input-error">Recuerde que los datos que deben ser asignados son números.</p>
+                            </div>
+
+                            <!--GRUPO FECHA CLIENTE-->
+                            <div class="formulario__grupo" id="grupo__fechacliente">
+                                <label for="fechacliente" class="formulario__label">Fecha:</label>
+                                <div class="formulario__grupo-input">
+                                    <input type="date" class="formulario__input" name="fechacliente" id="fechacliente">
+                                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                                </div>
+                                <p class="formulario__input-error">Verifique si la informacion es correcta.</p>
+                            </div>
+
+                            <!--GRUPO BOTON DE CREAR CLIENTE-->
+                            <div class="formulario__grupo formulario__grupo-btn-crearclient">
+                                <button type="" class="formulario__grupo-btn5">Crear cliente </button>
+                                <p class="formulario__mensaje-crearclient" id="formulario__mensaje-crearclient">!Cliente creado¡</p>
+                            </div>
+
+                    <!-------------------------------------ENCABEZADO DE LA SECCION VENDEDOR-------------------------------------->
+                    <h1 class="encabezados__formulario">INFORMACION BASICA DEL VENDEDOR Y VEHÍCULO</h1>
+
+                <!--GRUPO VENDEDOR-->
+                <div class="formulario__grupo" id="grupo__vendedor">
+                    <label for="vendedor" class="formulario__label">Vendedor:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="vendedor" id="vendedor" placeholder="Cristian Mora">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Por favor verifique que el nombre se encuentre correcto.</p>
+                </div>
+
+                <!--GRUPO numero de serie-->
+                <div class="formulario__grupo" id="grupo__nserie">
+                    <label for="nserie" class="formulario__label">Numero serie del vehiculo:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="nserie" id="nserie" placeholder="1HGBH41JXMN109186">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta casilla solo permite mayúsculas y números.</p>
+                </div>
+
+                <!--GRUPO numero de motor-->
+                <div class="formulario__grupo" id="grupo__nmotor">
+                    <label for="nmotor" class="formulario__label">Numero serie del motor:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="nmotor" id="nmotor" placeholder="B10SA511F20KC2">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta casilla solo permite mayúsculas y números.</p>
+                </div>
+
+                <!--GRUPO numero de placa-->
+                <div class="formulario__grupo" id="grupo__nplaca">
+                    <label for="nplaca" class="formulario__label">Numero de Placa del vehiculo:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="nplaca" id="nplaca" placeholder="MNF-536, Medellin">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Revise si los datos se encuentran en orden.</p>
+                </div>
+
+                <!--GRUPO VEHICULO-->
+                <div class="formulario__grupo" id="grupo__vehiculo">
+                    <label for="vehiculo" class="formulario__label">Vehículo:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="vehiculo" id="vehiculo" placeholder="Logan">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Los datos asignados a la casilla no son correctos, revise de nuevo.</p>
+                </div>
+
+                <!--GRUPO lINEA-->
+                <div class="formulario__grupo" id="grupo__linea">
+                    <label for="linea" class="formulario__label">Linea:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="linea" id="linea" placeholder="Renault">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Revise si los datos se encuentran en orden.</p>
+                </div>
+
+                              
+                <!--KILOMETROS-->
+                <div class="formulario__grupo" id="grupo__kilometros">
+                    <label for="kilometros" class="formulario__label">kilometros:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="kilometros" id="kilometros" placeholder="120km">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">LEsta casilla solo permite números y "KM".</p>
+                </div>
+
+                <!--HORAS-->
+                <div class="formulario__grupo" id="grupo__horas">
+                    <label for="horas" class="formulario__label">Horas:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="time" class="formulario__input" name="horas" id="horas" placeholder="360h">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Los datos asignados en la casilla no son correctos, revise de nuevo.</p>
+                </div>
+
+                <!--GRUPO FECHA DE VENTA DEL VEHICULO-->
+                <div class="formulario__grupo" id="grupo__ventvehiculo">
+                    <label for="ventvehiculo" class="formulario__label">Fecha de venta del vehiculo:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="date" class="formulario__input" name="ventvehiculo" id="ventvehiculo">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Verifique si la informacion es correcta.</p>
+                </div>
+
+                <!--GRUPO FECHA DE GARANTIA-->
+                <div class="formulario__grupo" id="grupo__garantia">
+                    <label for="garantia" class="formulario__label">Fecha limite de Garantia:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="date" class="formulario__input" name="garantia" id="garantia">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Verifique si la informacion es correcta.</p>
+                </div>
+
+                
+                <!---------------------------------------------ENCABEZADO DE LA SECCION M-------------------------------------------->
+                <h1 class="encabezados__formulario">M</h1>
+                    
+                <!--GRUPO ASEGURADORA-->
+                <div class="formulario__grupo" id="grupo__aseguradora">
+                    <label for="aseguradora" class="formulario__label">Aseguradora:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="aseguradora" id="aseguradora" placeholder="Sura">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Los datos asignados a la casilla no son correctos, revise de nuevo.</p>
+                </div>
+
+                <!--GRUPO MINIMO-->
+                <div class="formulario__grupo" id="grupo__minimo">
+                    <label for="minimo" class="formulario__label">Minimo:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="minimo" id="minimo" placeholder="4.000.000">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta seccion solo permite numeros, comillas y puntos.</p>
+                </div>
+                
+                 <!--GRUPO POLIZA-->
+                 <div class="formulario__grupo" id="grupo__poliza">
+                    <label for="poliza" class="formulario__label">Poliza:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="poliza" id="poliza" placeholder="5522998">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta seccion solo permite numeros y signo de porcentage.</p>
+                </div>
+
+                <!--GRUPO SINIESTRO-->
+                <div class="formulario__grupo" id="grupo__siniestro">
+                    <label for="siniestro" class="formulario__label">Siniestro N°:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="siniestro" id="siniestro" placeholder="4552263">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta seccion solo permite numeros.</p>
+                </div>
+
+                <!--GRUPO DEDUCIBLE-->
+                <div class="formulario__grupo" id="grupo__deducible">
+                    <label for="deducible" class="formulario__label">Deducible %:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="deducible" id="deducible" placeholder="45%">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Esta seccion solo permite numeros y signo de porcentage.</p>
+                </div>
+
+                <!--GRUPO FECHA AUTORIZACION-->
+                <div class="formulario__grupo" id="grupo__autorizacion">
+                    <label for="autorizacion" class="formulario__label">Fecha de Autorizacion:</label>
+                    <div class="formulario__grupo-input">
+                        <input type="date" class="formulario__input" name="autorizacion" id="autorizacion">
+                        <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error">Verifique si la informacion es correcta.</p>
+                </div>
+
+                    <!--GRUPO NOTAS 0-->
+                    <div class="nota__grupo" id="grupo__nota0">
+                        <label for="nota0" class="nota__label">Notas:</label>
+                        <div class="nota__grupo-input">
+                            <textarea class="nota__input" name="nota0" id="nota0" placeholder="Si es necesario agrega algo"></textarea>
+                            <i class="nota__validacion-estado fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <p class="nota__input-error" id="nota__input-error">Parece que excedió el número de caracteres permitidos.</p>
+                    </div>
+                    
+                    <!--GRUPO NOTAS 1-->
+                    <div class="nota__grupo" id="grupo__nota1">
+                        <label for="nota1" class="nota__label">Notas1:</label>
+                        <div class="nota__grupo-input">
+                            <textarea class="nota__input" name="nota1" id="nota1" placeholder="Si es necesario agrega algo"></textarea>
+                            <i class="nota__validacion-estado fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <p class="nota__input-error" id="nota__input-error">Parece que excedió el número de caracteres permitidos.</p>
+                    </div>
+
+                    <!--GRUPO NOTAS 2-->
+                    <div class="nota__grupo" id="grupo__nota2">
+                        <label for="nota2" class="nota__label">Notas2:</label>
+                        <div class="nota__grupo-input">
+                            <textarea class="nota__input" name="nota2" id="nota2" placeholder="Si es necesario agrega algo"></textarea>
+                            <i class="nota__validacion-estado fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <p class="nota__input-error" id="nota__input-error">Parece que excedió el número de caracteres permitidos.</p>
+                    </div>
+
+
+                <div class="formulario__mensaje" id="formulario__mensaje">
+                    <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b>Por favor rellene el formulatio correctamente</p>
+
+                </div>
+                <!--GRUPO BOTON DE ENVIAR-->
+                <div class="formulario__grupo formulario__grupo-btn-enviar">
+                    <button type="submit" class="formulario__grupo-btn2">Enviar</button>
+                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">!El formulario se envio exitosamente¡</p>
+                </div>
+
+                <!--GRUPO BOTON DE RESET-->
+                <div class="formulario__grupo formulario__grupo-btn-reset">
+                    <button type="reset" class="formulario__grupo-btn1">Reset</button>
+                    <p class="formulario__mensaje-again" id="formulario__mensaje-again">!Ahora puedes ingresar de nuevo los datos solicitados¡</p>
+                </div>
+                
+            </form>
+                    
+       </main>
+
+    <script src="js/formulario.js"></script>
+    <script src="https://kit.fontawesome.com/1956f254dc.js" crossorigin="anonymous"></script>
+</body>
+</html>
